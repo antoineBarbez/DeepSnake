@@ -66,7 +66,7 @@ class Environment(object):
 	def __get_new_prey_position(self):
 		position = Point(random.randint(0, self.grid_size-1), random.randint(0, self.grid_size-1))
 
-		if position in self.snake_body:
+		if (position in self.snake_body) | (position == self.snake_head):
 			return self.__get_new_prey_position()
 		else:
 			return position

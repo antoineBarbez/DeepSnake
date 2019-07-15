@@ -5,18 +5,17 @@ import environment as env
 import draw
 import pygame
 import sys
-import time
 
 class SnakeGame(object):
 	CELL_SIZE = 30
 	
 	def __init__(self, grid_size=10):
+		self.env = env.Environment(grid_size)
+
 		pygame.init()
 		pygame.display.set_caption('Score: 0')
 		self.screen = pygame.display.set_mode((self.CELL_SIZE * grid_size, self.CELL_SIZE * grid_size))
-		self.screen.fill((200, 200, 200))
-
-		self.env = env.Environment(grid_size)
+		self.update_screen()
 
 	def play(self):
 		time_previous_update = pygame.time.get_ticks()
