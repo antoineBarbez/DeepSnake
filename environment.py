@@ -20,35 +20,32 @@ class Environment(object):
 		return state
 
 	def reset(self):
-		self.done = False
-
 		self.score = 0
+
+		self.done = False
 		
 		self.snake_body = []
-		self.snake_head = Point(0, 0)
-		self.snake_direction = Point(0, 0)
+		self.snake_head = Point(0, 1)
+		self.snake_direction = Point(1, 0)
 		self.prey = self.__get_new_prey_position()
 
 	def update(self, action):
 		# Update snake direction
-		if self.snake_direction == Point(0, 0):
-			self.snake_direction = Point(1, 0)
-		else:
-			if action == Action.TURN_LEFT:
-				if self.snake_direction.x == 0:
-					self.snake_direction.x = self.snake_direction.y
-					self.snake_direction.y = 0
-				else:
-					self.snake_direction.y = - self.snake_direction.x
-					self.snake_direction.x = 0
+		if action == Action.TURN_LEFT:
+			if self.snake_direction.x == 0:
+				self.snake_direction.x = self.snake_direction.y
+				self.snake_direction.y = 0
+			else:
+				self.snake_direction.y = - self.snake_direction.x
+				self.snake_direction.x = 0
 
-			if action == Action.TURN_RIGHT:
-				if self.snake_direction.x == 0:
-					self.snake_direction.x = - self.snake_direction.y
-					self.snake_direction.y = 0
-				else:
-					self.snake_direction.y = self.snake_direction.x
-					self.snake_direction.x = 0
+		if action == Action.TURN_RIGHT:
+			if self.snake_direction.x == 0:
+				self.snake_direction.x = - self.snake_direction.y
+				self.snake_direction.y = 0
+			else:
+				self.snake_direction.y = self.snake_direction.x
+				self.snake_direction.x = 0
 
 		# Update snake position
 		self.snake_head.x += self.snake_direction.x
