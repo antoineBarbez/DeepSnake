@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/antoinebarbez/Desktop/tensorflow/DeepSnake/dqn/trained_models/dqn-10x10x2"
+all_model_checkpoint_paths: "/Users/antoinebarbez/Desktop/tensorflow/DeepSnake/dqn/trained_models/dqn-10x10x2"
