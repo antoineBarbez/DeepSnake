@@ -42,7 +42,7 @@ class StateBuffer(object):
 		self.states = np.delete(self.states, -1, -1)
 
 class DQNAgent(object):
-	def __init__(self, grid_size, num_states):
+	def __init__(self, grid_size, num_states=2):
 		"""
 		args:
 			grid_size (int):
