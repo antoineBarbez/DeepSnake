@@ -48,6 +48,37 @@ class SnakeGame(object):
 		self.screen = pygame.display.set_mode((self.CELL_SIZE * self.grid_size, self.CELL_SIZE * self.grid_size))
 		self.__update_screen()
 
+
+	def __get_action(self, key):
+		"""
+		Returns the action corresponding to the key pressed
+		"""
+
+		if self.env.snake_direction.x == 0:
+			if self.env.snake_direction.y > 0:
+				if key == pygame.K_LEFT:
+					return environment.Action.TURN_RIGHT
+				if key ==  pygame.K_RIGHT:
+					return environment.Action.TURN_LEFT
+			else:
+				if key == pygame.K_LEFT:
+					return environment.Action.TURN_LEFT
+				if key ==  pygame.K_RIGHT:
+					return environment.Action.TURN_RIGHT
+		else:
+			if self.env.snake_direction.x > 0:
+				if key == pygame.K_UP:
+					return environment.Action.TURN_LEFT
+				if key ==  pygame.K_DOWN:
+					return environment.Action.TURN_RIGHT
+			else:
+				if key == pygame.K_UP:
+					return environment.Action.TURN_RIGHT
+				if key ==  pygame.K_DOWN:
+					return environment.Action.TURN_LEFT
+
+		return environment.Action.MAINTAIN
+
 	def __run_episode_agent(self, agent):
 		"""
 		Runs a single episode of the game with the specified agent playing
@@ -83,11 +114,7 @@ class SnakeGame(object):
 		while not self.env.done:
 			for event in pygame.event.get():
 				if event.type == pygame.KEYDOWN:
-					if event.key == pygame.K_LEFT:
-						action = environment.Action.TURN_LEFT
-
-					if event.key == pygame.K_RIGHT:
-						action = environment.Action.TURN_RIGHT
+					action = self.__get_action(event.key)
 
 					if event.key == pygame.K_ESCAPE:
 						self.__close_screen() 

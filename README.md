@@ -11,7 +11,7 @@ To train your own agent to play on a 10x10 grid:
 ```python
 import dqn.agent as agent
 
-dqn_agent = agent.DQNAgent(grid_size=10, num_states=2)
+dqn_agent = agent.DQNAgent(grid_size=10)
 dqn_agent.train(save_name="my_model")
 ```
 At the end of the training, the model will be saved in *./dqn/trained_models/*.
